@@ -21,23 +21,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
-
         var builder = WebApplication.CreateBuilder(args);
         {
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
-            builder.Services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1",
-                new Microsoft.OpenApi.Models.OpenApiInfo
-                {
-                    Title = "Api",
-                    Description = "Demo API for showing Swagger",
-                    Version = "v1"
-                });
-            });
+            builder.Services.AddSwaggerGen();
             var settings = builder.Configuration.GetSection("RingGo").Get<RingGoSettings>();
             builder.Services.AddAuthentication(o =>
             {
@@ -56,27 +44,20 @@ public class Program
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("Api/swagger/v1/swagger.json", "v1");
-                    options.RoutePrefix = string.Empty;
-                });
+                app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-            app.MapControllers();
-            //app.MapControllerRoute(
-            //name: "default",
-            //pattern: "{controller=home}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=home}/{action=Index}/{id?}");
 
             app.Run();
-
-
         }
-
     }
 }
 
