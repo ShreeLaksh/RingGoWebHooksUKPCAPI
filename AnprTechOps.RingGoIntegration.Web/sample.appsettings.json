@@ -1,0 +1,29 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "MinimumLevel": {
+      "Default": "Verbose",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": { "path": "logs/log.txt" }
+      }
+    ]
+  },
+  "ConnectionStrings": {
+    "AnprTechOpsDatabase": "x"
+  },
+  "RingGo": {
+    "VendorId": 0,
+    "PublicKey": "x",
+    "PrivateKey": "x",
+    "ValidateBearerHmac": true
+  },
+  "AllowedHosts": "*"
+}
