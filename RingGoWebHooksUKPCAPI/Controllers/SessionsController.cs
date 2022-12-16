@@ -10,8 +10,6 @@ using Microsoft.Extensions.Logging;
 
 namespace ANPRTechOps.RingGoIntegration.Web.Controllers
 {
-
-    [ApiController]
     [Authorize(AuthenticationSchemes = RingGoAuthenticationHandler.AuthenticationSchemeName)]
     [Route("sessions")]
     public class SessionsController : ControllerBase
